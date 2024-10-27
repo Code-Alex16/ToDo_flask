@@ -1,15 +1,12 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'base.html' %}
+{% Block_head %}
     <link rel="stylesheet" href="/App/static/login.css">
-    <title>ToDoox - Login</title>
-</head>
-<body>
+
+    {% Block_title %} ToDoox - Login {% EndBlock_title %}
+{% EndBlock_head %}
+{%Block_main%}
     <div class="container-login">
-        <form action="" method="post"> 
+        <form action="{{url_for('login_user')}}" method="post"> 
 
             <label id="user" for="email">Username or Email</label>
             <input id="user-input" type="email" name="email" placeholder="example@email.com">
@@ -20,5 +17,4 @@
             <input type="submit" value="Ingresar">
         </form>
     </div>
-</body>
-</html>
+{%EndBlock_main%}
