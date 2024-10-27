@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% Block_title %} {% EndBlock_title %}</title>
+</head>
+<body>  
+    <header class="encabezado">
+        {% Block_header %}
+        <div id="logo">
+            <img src="" alt="">
+            <H1><a href="">ToDoox</a></H1>
+        </div>
+        {% EndBlock_header %}
+    </header>
+    <main>
+        {%Block_main%}
+        {%EndBlock_main%}
+    </main>
+    <footer>
+        {% Block_footer%}
+        {%EndBlock_footer%}
+    </footer>
+</body>
+</html>
