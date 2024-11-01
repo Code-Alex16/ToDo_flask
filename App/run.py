@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
-
+from flask import Flask, render_template, request, redirect, url_for
+from functions.funtions_users import *
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,6 +8,15 @@ def pagina_principal():
 
 @app.route('/login', methods = ['POST','GET'])
 def login_user():
+    if request.method == 'POST':
+        user_email = request.form.get('email')
+        password = request.form.get('password')
+
+        if not(validated_users(user_email, password)):
+            return redirect(url_for('login_user', msg='Usuario no existente'))
+        
+        return redirect(url_for('pagina_usuario'))
+        
     return render_template('login.html')
 
 @app.route('/resgistro', methods = ['POST'])
