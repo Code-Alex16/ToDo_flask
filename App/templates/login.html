@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
-{% Block_head %}
-    <link rel="stylesheet" href="/App/static/login.css">
+<link rel="stylesheet" href="/App/static/login.css">
 
-    {% Block_title %} ToDoox - Login {% EndBlock_title %}
-{% EndBlock_head %}
-{%Block_main%}
+{% block title %}ToDoox - Login{% endblock %}
+
+{%block main%}
+    {% if msg %}
+        <p>msg</p>
+    {% endif %}
     <div class="container-login">
         <form action="{{url_for('login_user')}}" method="post"> 
 
@@ -17,4 +19,4 @@
             <input type="submit" value="Ingresar">
         </form>
     </div>
-{%EndBlock_main%}
+{% endblock %}

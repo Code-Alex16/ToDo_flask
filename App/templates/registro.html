@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% Block_head %}
-    <link rel="stylesheet" href="/App/static/registro.css">
 
-    {% Block_title %} ToDoox - Registro {% EndBlock_title %}
-{% EndBlock_head %}
-{%Block_main%}
+<link rel="stylesheet" href="/App/static/registro.css">
+
+{%block title%}ToDoox - Registro{%endblock%}
+
+{%block main%}
     <div class="container_registro">
         <form action="{{url_for('user_registrer')}}" method="post"> 
 
@@ -20,4 +20,4 @@
             <input type="submit" value="Registrarse">
         </form>
     </div>
-{%EndBlock_main%}
+{%endblock%}

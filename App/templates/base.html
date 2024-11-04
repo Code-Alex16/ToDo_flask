@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% Block_head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% Block_title %} {% EndBlock_title %}</title>
-    {% EndBlock_head %}
+    <title>{% block title %} {% endblock %}</title>
 </head>
 <body>  
     <header class="encabezado">
-        {% Block_header %}
+        {% block header %}
         <div id="logo">
             <img src="" alt="">
-            <H1><a href="">ToDoox</a></H1>
+            <H1><a href="{{url_for('pagina_principal')}}">ToDoox</a></H1>
         </div>
-        {% EndBlock_header %}
+        {% endblock %}
     </header>
     <main>
-        {%Block_main%}
-        {%EndBlock_main%}
+        {%block main%}
+        {%endblock%}
     </main>
     <footer>
-        {% Block_footer%}
-        {%EndBlock_footer%}
+        {% block footer%}
+        {%endblock%}
     </footer>
 </body>
 </html>
