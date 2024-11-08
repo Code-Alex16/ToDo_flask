@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from functions.funtions_users import validated_users, registrer_user
+from App.functions.validations_data import validated_users, registrer_user
 from flask import Flask, render_template, request, redirect, url_for
 
 load_dotenv()   #cargar variables de entorno
