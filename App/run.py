@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from App.functions.validations_data import validated_users, registrer_user
+from functions.validations_data import validated_users, registrer_user
 from flask import Flask, render_template, request, redirect, url_for
 
 load_dotenv()   #cargar variables de entorno
@@ -23,7 +23,7 @@ def login_user():
         if not(validated_users(user_email, password)):
             return redirect(url_for('login_user', msg='Contraseña no valida'))
         
-        return redirect(url_for('pagina_usuario'))
+        return redirect(url_for('pagina_principal'))
         
     return render_template('login.html')
 
