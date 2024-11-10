@@ -1,40 +1,46 @@
-from werkzeug.security import generate_password_hash, check_password_hash
+import sys
+import os
 import re
 
-def validated_users(user_email : str = None, password = None):
-    #detectar si ingresa con username o email
-    is_email = False
+# Agregar la ruta absoluta de la carpeta "App" al sistema de rutas
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases')))
 
-    if re.search('@', user_email):
-        is_email = True
+from werkzeug.security import generate_password_hash, check_password_hash
+from config_db import Database
 
-    # Seleccionar el tipo de busqueda (si usa username o email)
+
+def validated_users(user_email = None, password_user = None):
+    DB = Database()
+    password_hash : str = ''
+    
     query = 'SELECT password FROM tbl_users WHERE user_name = %s'
 
-    if is_email:
+    if re.search('@', user_email):
         query = 'SELECT password FROM tbl_users WHERE email = %s'
+  
+    values = (user_email, )
     
-    values = (user_email,)
-
-    #Buscar en la base de datos y comparar
     try:
-        con = Database.GetConnexion()
+        con = DB.GetConnexion()
         cursor = con.cursor()
-        password_hash = cursor.execute(query,values)
+        cursor.execute(query,values)
+        result = cursor.fetchone()
+
+        if result: 
+            password_hash = result[0]
+
+            if check_password_hash(pwhash=password_hash,password = password_user):
+                return True
+        
+        return False
 
     except Exception as e:
         print(f'Error : {e}')
 
     finally:
-        # cerrar conexiones
         cursor.close()
-        Database.CloseConexion(connection=con)
+        DB.CloseConexion(connection=con)
 
-        # comparar y retornar
-        if password_hash and check_password_hash(password_hash,password):
-            return True
-        else:
-            return False
 
 def registrer_user(user_name, email, password):
     # validar datos sean correctos
